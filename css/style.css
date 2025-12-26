@@ -3,6 +3,7 @@
   --palepink:#FFA3A2; --orange:#FF7F50; --blue:#049DD9; --darkblue:#03283E; --pink:#FF9179; --paper:#ffffff; 
   --border:#e9dfd8; --radius:16px; --shadow:0 6px 16px rgba(0,0,0,.08);
   --container:420px;
+  --header-h: 60px;
 }
 
 * {
@@ -10,8 +11,24 @@
 } 
 
 html,body {
-  height:100%
+  height:100%;
+  scroll-padding-top: var(--header-h);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  scroll-margin-top: clamp(64px, 10vh, 96px);
+}
+
+/*
+.nav-list a.active {
+  color: var(--text, #fff);
+  font-weight: 600; 
+}
+  */
 
 body {
   margin:0;
@@ -37,11 +54,13 @@ a {
 }
 
 header.mobile {
-  position:sticky;
-  top:0;
-  background:var(--paper);
-  z-index:20;
-  border-bottom:1px solid var(--pink)
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  z-index: 9999;
+  border-bottom: 1px solid var(--pink);
 }
 
 .topbar {
@@ -136,12 +155,45 @@ header.mobile {
 }
 
 .mobile-nav a[aria-current="page"] {
-  outline:2px solid var(--palepink); 
-  outline-offset:2px
+  color: var(--blue);
+  font-weight: 600;
+  outline: none;
 }
 
+/* наведение мышью */
+.mobile-nav a:hover {
+  color: var(--blue);
+}
+
+/* фокус с клавиатуры (accessibility) */
+.mobile-nav a:focus-visible {
+  color: var(--blue);
+  outline: 2px solid var(--palepink);
+  outline-offset: 2px;
+}
+
+/* активный пункт (после клика) */
+.mobile-nav a[aria-current="page"] {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.mobile-nav { display: none; }
+
+.mobile-nav.open { display: block; }
+
+body.nav-open { overflow: hidden; }
+
+/*
+.mobile-nav .nav-list a.active {
+  color: var(--blue);
+  font-weight: 600;
+}
+*/
+
 .page {
-  padding:8px 0 28px
+  padding:8px 0 28px;
+  padding-top: var(--header-h);
 }
 
 section {
@@ -153,11 +205,13 @@ h1,h2,h3 {
 }
 
 h1 {
-  font-size:56px;
+  font-size:65px;
   font-family: 'Lora', serif;
   font-weight: 400;
   color:var(--pink);
-  line-height:1.2
+  line-height:1.2;
+  padding-top: 100px;
+  padding-bottom: 56px;
 } 
 
 h2 {
@@ -166,6 +220,7 @@ h2 {
   font-weight: 400;
   color:var(--orange);
   line-height: 1.2;
+  padding-top: 20px;
 }
 
 .smaller {
@@ -203,6 +258,8 @@ strong {
   font-size: 23px;
   font-weight: 400;
   line-height: 1.2;
+  padding-left: 20px;
+  padding-right: 10px;
 }
 
 .card {
@@ -210,7 +267,8 @@ strong {
   border:1px solid var(--border);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:14px
+  padding:14px;
+  margin-bottom: 24px;
 }
 
 .expertise {
@@ -231,7 +289,7 @@ strong {
 
 .row {
   display:flex; 
-  gap:8px;
+  gap:15px;
   flex-wrap:wrap
 }
 
@@ -273,7 +331,7 @@ strong {
 
 .list {
   display:grid; 
-  gap:10px
+  gap:40px
 }
 
 .list-item {
@@ -284,11 +342,14 @@ strong {
 }
 
 .thumb {
-  width:56px;
-  height:56px;
+  width:60px;
+  height:60px;
   border-radius:50%;
   background: var(--paper);
-  border:1px solid var(--blue)
+  border:1px solid var(--blue);
+  background-size: contain;   
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .input {
@@ -304,6 +365,7 @@ strong {
 }
 
 .btn {
+  cursor: pointer;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -315,6 +377,11 @@ strong {
   font-family: 'Oxygen', sans-serif;
   font-size: 20px;
   font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--orange); 
 }
 
 .btn.secondary {
@@ -326,13 +393,16 @@ strong {
 footer.mobile {
   padding:18px 0;
   color:var(--darkblue);
-  text-align:center
+  text-align:center;
+  font-size: 20px;
 }
 
 @media (min-width:900px) {
    :root{--container:720px} 
    h1{font-size:34px} 
-   .stack{gap:14px} 
+   h1{padding-top: 60px}
+   h1{padding-bottom: 40px}
+  .stack{gap:14px} 
   }
 
 @media (min-width:1200px) { 
