@@ -23,13 +23,6 @@ html {
   scroll-margin-top: clamp(64px, 10vh, 96px);
 }
 
-/*
-.nav-list a.active {
-  color: var(--text, #fff);
-  font-weight: 600; 
-}
-  */
-
 body {
   margin:0;
   background:var(--paper);
@@ -160,19 +153,16 @@ header.mobile {
   outline: none;
 }
 
-/* наведение мышью */
 .mobile-nav a:hover {
   color: var(--blue);
 }
 
-/* фокус с клавиатуры (accessibility) */
 .mobile-nav a:focus-visible {
   color: var(--blue);
   outline: 2px solid var(--palepink);
   outline-offset: 2px;
 }
 
-/* активный пункт (после клика) */
 .mobile-nav a[aria-current="page"] {
   color: var(--blue);
   font-weight: 600;
@@ -183,13 +173,6 @@ header.mobile {
 .mobile-nav.open { display: block; }
 
 body.nav-open { overflow: hidden; }
-
-/*
-.mobile-nav .nav-list a.active {
-  color: var(--blue);
-  font-weight: 600;
-}
-*/
 
 .page {
   padding:8px 0 28px;

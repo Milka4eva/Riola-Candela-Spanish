@@ -20,11 +20,11 @@
     const message = document.getElementById('message').value.trim();
 
     if (!name || !email || !message) {
-      alert('Please fill in all fields before sending.');
+      alert('Por favor, rellene todos los campos antes de enviar.');
       return;
     }
 
-    btn.textContent = 'SENDING...';
+    btn.textContent = 'ENVIANDO...';
     btn.disabled = true;
 
     // Отправляем письмо через EmailJS
@@ -34,13 +34,13 @@
       message: message,
     })
     .then(() => {
-      btn.textContent = 'SENT!';
+      btn.textContent = 'LISTO!';
       btn.style.backgroundColor = '#049DD9';
       btn.style.color = '#fff';
     })
     .catch(() => {
       btn.textContent = 'ERROR';
       btn.style.backgroundColor = '#FF7F50';
-      alert('There was a problem sending your message. Please try again later.');
+      alert('Hubo un problema al enviar tu mensaje. Inténtalo de nuevo más tarde.');
     });
   });
